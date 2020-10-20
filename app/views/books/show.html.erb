@@ -1,18 +1,4 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <nav class="nav navbar-nav navbar-left">
-      <span>Bookers</span>
-    </nav>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-          <li><a class="glyphicon glyphicon-home home" href="/users/26004"> Home</a></li>
-          <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
-          <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
-          <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<%= render 'books/list' %>
 
 <div class="body">
       <div class="container">
@@ -76,5 +62,7 @@
 		<h2 class="book-title"><%= @book.title %></h2>
 		<h2 class="book-title"><%= @book.body %></h2>
 
+    <% if @book.user == current_user %>
 		<%= link_to "Edit", edit_book_path(@book) %>
 		<td><%= link_to "destroy", book_path(book.id), method: :delete, data: {confirm: "本当に消しますか？"} %></td>
+		<% end %>

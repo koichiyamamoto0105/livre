@@ -1,3 +1,4 @@
+<body>
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <nav class="nav navbar-nav navbar-left">
@@ -77,8 +78,10 @@
           <img class="attachment user profile_image fallback" src="/assets/no-image-icon-d3f9e11cb2bb284b42e0810f94b03c50126f51f482ea43054b87c2b7ebaa01d5.jpg" alt="No image icon"><br>
           chouette
 </a>        </td>
+<% @books.each do |book| %>
         <td><%= book.title %></a></td>
         <td><%= book.body %></td>
+<% end %>
 
           <td><a class="btn-sm btn-success edit_book_40635" href="/books/40635/edit">Edit</a></td>
           <td><a data-confirm="本当に消しますか？" class="btn-sm btn-danger destroy_book_40635" rel="nofollow" data-method="delete" href="/books/40635">Destroy</a></td>
