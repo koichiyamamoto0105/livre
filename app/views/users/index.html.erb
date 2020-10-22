@@ -1,23 +1,23 @@
 <%= render 'books/list' %>
 
-  <div class="col-xs-9">
-    <h2>Users</h2>
-
+<div class="col-xs-9">
+  <h1>Users</h1>
     <table class="table">
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+     <thead>
+      <tr>
+         <th>image</th>
+           <th>name</th>
+            <th colspan="3"></th>
+      </tr>
+     </thead>
+     
+    <% @users.each do |user| %>
+     <tbody>
+      <td><%= attachment_image_tag user.profile_image_id, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>     
+      <td><%= user.name %></td>
+       
+     </tbody>
+    <% end %>
 
-  <tbody>
-    <tr>
-    <td><%= @users%></td>
-    <td><%= @users%></td>
-    <td><%= link_to 'Show', user_path(current_user.id) %></td>
-    </tr>
-
-  </tbody>
-  </table>
+   </table>
+</div>

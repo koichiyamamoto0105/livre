@@ -5,8 +5,22 @@ class UsersController < ApplicationController
 
    def index
      @users = User.all
+     @book = Book.new
+     @books = Book.all
    end
-
+   
+   def create
+    book = Book.new(book_params)
+    if book.save
+    redirect_to book_path(book.id), notice:'You have creatad book successfully.'
+    else
+      @book = book
+      @books = Book.all
+    render :index
+    end
+   end
+   
+   
    def show
     @user = User.find(params[:id])
    end
@@ -21,10 +35,12 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
    end
 
-  private
-  def user_params
-    params.require(:user).permit(:name)
-  end
+   private
+   def user_params
+    params.require(:user).permit(:name, :profile_image, :introduction)
+   end
+  
+  
 
 end
 
