@@ -3,6 +3,7 @@
  <div class="col-xs-9">
 
 <h1>Bookshow</h1>
+
 <table class="table table-hover table-inverse">
   <thead>
     <tr>
@@ -11,7 +12,13 @@
   <th colspan="3"></th>
   </tr>
   </thead>
-
+  <% @books.each do |book| %>
+  <tbody>
+    <!--userの画像要-->
+    <td><%= book.title %></td>
+    <td><%= book.body %></td>
+  </tbody>
+ <% end %>
 </table>
 
 </div>

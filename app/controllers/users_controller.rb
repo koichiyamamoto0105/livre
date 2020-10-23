@@ -5,8 +5,7 @@ class UsersController < ApplicationController
 
    def index
      @users = User.all
-     @book = Book.new
-     @books = Book.all
+    
    end
    
    def create
@@ -16,13 +15,15 @@ class UsersController < ApplicationController
     else
       @book = book
       @books = Book.all
-    render :index
+    render :show
     end
    end
    
    
    def show
     @user = User.find(params[:id])
+    @book = Book.new
+    @books = Book.all
    end
 
    def edit
@@ -40,6 +41,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :profile_image, :introduction)
    end
   
+   def book_params
+    params.require(:book).permit(:title, :body)
+   end
   
 
 end

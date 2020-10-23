@@ -2,6 +2,7 @@
       <div class="container">
 
         <p id="notice"><%= notice %></p>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
            <div class="row">
               <div class="col-xs-3">
@@ -17,7 +18,7 @@
                </tr>
                <tr>
     	         <th>introduction</th>
-    	        <th></th>
+    	        <th><%= current_user.introduction %></th>
              </tr>
             </tbody>
           </table>
