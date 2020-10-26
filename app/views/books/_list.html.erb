@@ -2,40 +2,51 @@
       <div class="container">
 
         <p id="notice"><%= notice %></p>
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <!--エラーメッセージ-->
+        <% if book.errors.any? %>
+          <div id="error_explanation">
+             <h2><%= pluralize(book.errors.count, "error") %> prohibited this obj from being saved:</h2>
 
-           <div class="row">
-              <div class="col-xs-3">
-                 <h2>User info</h2>
-    <!--<img class="attachment user profile_image fallback" src="/assets/no_image-ede28af4bad96368ef41be1b4be1cffce0d9402540f75d17895e32cb0d2af5e6.jpg" alt="No image"><table class="table">-->
-          <table class="table">
-            <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+              <ul>
+              <% book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+              </ul>
+          </div>
+        <% end %>
+
+        <div class="row">
+         <div class="col-xs-3">
+          <h2>User info</h2>
+              <table class="table">
+            <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
               <tbody>
                 <tr></tr>
                 <tr>
     	          <th>name</th>
-    	          <th><%= current_user.name %></th>
+    	           <th><%= user.name %></th>
                </tr>
                <tr>
     	         <th>introduction</th>
-    	        <th><%= current_user.introduction %></th>
+    	         <th><%= user.introduction %></th>
              </tr>
             </tbody>
           </table>
 
       <div class="row">
-  <!--<a class="col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_26004" href="/users/26004/edit"></a>-->
-      <%= link_to "", edit_user_path(current_user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+      
+      <%= link_to "", edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
      </div>
+     
      <h2>New book</h2>
-      <%= form_with model:@book, local: true do |f| %>
+      <%= form_with model:book, local: true do |f| %>
 
-      <div class="field row">
+     <div class="field row">
        <label for="book_title">Title</label>
         <%= f.text_field :title %>
      </div>
 
-     <div class="field row">
+    <div class="field row">
        <label for="book_opinion">Opinion</label>
        <%= f.text_area :body %>
     </div>
