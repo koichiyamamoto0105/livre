@@ -33,28 +33,28 @@ Userモデルのテスト
 [32m      投稿に失敗する[0m
   編集のテスト
     自分の投稿の編集画面への遷移
-[32m      遷移できる[0m
+[31m      遷移できる (FAILED - 1)[0m
     他人の投稿の編集画面への遷移
-[31m      遷移できない (FAILED - 1)[0m
+[32m      遷移できない[0m
     表示の確認
-[32m      Editing Bookと表示される[0m
-[32m      title編集フォームが表示される[0m
-[32m      opinion編集フォームが表示される[0m
-[32m      Showリンクが表示される[0m
-[32m      Backリンクが表示される[0m
+[31m      Editing Bookと表示される (FAILED - 2)[0m
+[31m      title編集フォームが表示される (FAILED - 3)[0m
+[31m      opinion編集フォームが表示される (FAILED - 4)[0m
+[31m      Showリンクが表示される (FAILED - 5)[0m
+[31m      Backリンクが表示される (FAILED - 6)[0m
     フォームの確認
-[32m      編集に成功する[0m
-[32m      編集に失敗する[0m
+[31m      編集に成功する (FAILED - 7)[0m
+[31m      編集に失敗する (FAILED - 8)[0m
   一覧画面のテスト
     表示の確認
 [32m      Booksと表示される[0m
-[31m      自分と他人の画像のリンク先が正しい (FAILED - 2)[0m
+[32m      自分と他人の画像のリンク先が正しい[0m
 [32m      自分と他人のタイトルのリンク先が正しい[0m
 [32m      自分と他人のオピニオンが表示される[0m
   詳細画面のテスト
     自分・他人共通の投稿詳細画面の表示を確認
 [32m      Book detailと表示される[0m
-[31m      ユーザー画像・名前のリンク先が正しい (FAILED - 3)[0m
+[32m      ユーザー画像・名前のリンク先が正しい[0m
 [32m      投稿のtitleが表示される[0m
 [32m      投稿のopinionが表示される[0m
     自分の投稿詳細画面の表示を確認
@@ -83,7 +83,7 @@ bootstrapのテスト
 [32m      loginリンクが表示される[0m
     ヘッダーのリンクを確認
 [32m      Home画面に遷移する[0m
-[31m      About画面に遷移する (FAILED - 4)[0m
+[31m      About画面に遷移する (FAILED - 9)[0m
 [32m      新規登録画面に遷移する[0m
 [32m      ログイン画面に遷移する[0m
   ログインしている場合
@@ -168,35 +168,93 @@ bootstrapのテスト
 
 Failures:
 
-  1) 投稿のテスト 編集のテスト 他人の投稿の編集画面への遷移 遷移できない
-     [31mFailure/Error: expect(current_path).to eq('/books')[0m
+  1) 投稿のテスト 編集のテスト 自分の投稿の編集画面への遷移 遷移できる
+     [31mFailure/Error: expect(current_path).to eq('/books/' + book.id.to_s + '/edit')[0m
      [31m[0m
-     [31m  expected: "/books"[0m
-     [31m       got: "/books/2/edit"[0m
+     [31m  expected: "/books/1/edit"[0m
+     [31m       got: "/books"[0m
      [31m[0m
      [31m  (compared using ==)[0m
      [31m[0m
      [31m[0m
      [31m[0m
-     [36m# ./spec/system/books_spec.rb:52:in `block (4 levels) in <main>'[0m
+     [36m# ./spec/system/books_spec.rb:46:in `block (4 levels) in <main>'[0m
 
-  2) 投稿のテスト 一覧画面のテスト 表示の確認 自分と他人の画像のリンク先が正しい
-     [31mFailure/Error: expect(page).to have_link '', href: user_path(book2.user)[0m
-     [31m  expected to find link "" with href "/users/1" but there were no matches[0m
+  2) 投稿のテスト 編集のテスト 表示の確認 Editing Bookと表示される
+     [31mFailure/Error: expect(page).to have_content('Editing Book')[0m
+     [31m  expected to find text "Editing Book" in "Bookers\nHome Users Books logout\nUser info\nname sab3eu4u6s introduction 3rp2fr4cf6dasycc3h2p\nNew book\nTitle\nOpinion\nBooks\nTitle Opinion d1uui 6s3nwo9ilwesyswz2em0 j6wlc 2p8w1kf4h78mduwmmmgb\nCopyRight Infratop.inc"[0m
      [31m[0m
      [31m[0m
      [31m[0m
-     [36m# ./spec/system/books_spec.rb:102:in `block (4 levels) in <main>'[0m
+     [36m# ./spec/system/books_spec.rb:60:in `block (4 levels) in <main>'[0m
 
-  3) 投稿のテスト 詳細画面のテスト 自分・他人共通の投稿詳細画面の表示を確認 ユーザー画像・名前のリンク先が正しい
-     [31mFailure/Error: expect(page).to have_link book.user.name, href: user_path(book.user)[0m
-     [31m  expected to find link "a384ii0muh" with href "/users/2" but there were no matches[0m
+  3) 投稿のテスト 編集のテスト 表示の確認 title編集フォームが表示される
+     [31mFailure/Error: expect(page).to have_field 'book[title]', with: book.title[0m
+     [31m  expected to find visible field "book[title]" that is not disabled with value "swaz2" but there were no matches. Also found "", which matched the selector but not all filters. Expected value to be "swaz2" but was nil[0m
      [31m[0m
      [31m[0m
      [31m[0m
-     [36m# ./spec/system/books_spec.rb:123:in `block (4 levels) in <main>'[0m
+     [36m# ./spec/system/books_spec.rb:63:in `block (4 levels) in <main>'[0m
 
-  4) ヘッダーのテスト ログインしていない場合 ヘッダーのリンクを確認 About画面に遷移する
+  4) 投稿のテスト 編集のテスト 表示の確認 opinion編集フォームが表示される
+     [31mFailure/Error: expect(page).to have_field 'book[body]', with: book.body[0m
+     [31m  expected to find visible field "book[body]" that is not disabled with value "ej1w3hfxq94mxcjd79yk" but there were no matches. Also found "", which matched the selector but not all filters. Expected value to be "ej1w3hfxq94mxcjd79yk" but was ""[0m
+     [31m[0m
+     [31m[0m
+     [31m[0m
+     [36m# ./spec/system/books_spec.rb:66:in `block (4 levels) in <main>'[0m
+
+  5) 投稿のテスト 編集のテスト 表示の確認 Showリンクが表示される
+     [31mFailure/Error: expect(page).to have_link 'Show', href: book_path(book)[0m
+     [31m  expected to find link "Show" with href "/books/1" but there were no matches[0m
+     [31m[0m
+     [31m[0m
+     [31m[0m
+     [36m# ./spec/system/books_spec.rb:69:in `block (4 levels) in <main>'[0m
+
+  6) 投稿のテスト 編集のテスト 表示の確認 Backリンクが表示される
+     [31mFailure/Error: expect(page).to have_link 'Back', href: books_path[0m
+     [31m  expected to find link "Back" with href "/books" but there were no matches[0m
+     [31m[0m
+     [31m[0m
+     [31m[0m
+     [36m# ./spec/system/books_spec.rb:72:in `block (4 levels) in <main>'[0m
+
+  7) 投稿のテスト 編集のテスト フォームの確認 編集に成功する
+     [31mFailure/Error: click_button 'Update Book'[0m
+     [31m[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find button "Update Book" that is not disabled[0m
+     [31m[0m
+     [31m[0m
+     [31m[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/node/finders.rb:302:in `block in synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/node/base.rb:83:in `synchronize'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/node/finders.rb:291:in `synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/node/finders.rb:52:in `find'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/node/actions.rb:58:in `click_button'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/session.rb:759:in `block (2 levels) in <class:Session>'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/dsl.rb:58:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./spec/system/books_spec.rb:78:in `block (4 levels) in <main>'[0m
+
+  8) 投稿のテスト 編集のテスト フォームの確認 編集に失敗する
+     [31mFailure/Error: click_button 'Update Book'[0m
+     [31m[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find button "Update Book" that is not disabled[0m
+     [31m[0m
+     [31m[0m
+     [31m[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/node/finders.rb:302:in `block in synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/node/base.rb:83:in `synchronize'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/node/finders.rb:291:in `synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/node/finders.rb:52:in `find'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/node/actions.rb:58:in `click_button'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/session.rb:759:in `block (2 levels) in <class:Session>'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/capybara-3.33.0/lib/capybara/dsl.rb:58:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./spec/system/books_spec.rb:85:in `block (4 levels) in <main>'[0m
+
+  9) ヘッダーのテスト ログインしていない場合 ヘッダーのリンクを確認 About画面に遷移する
      [31mFailure/Error: is_expected.to eq('/home/about')[0m
      [31m[0m
      [31m  expected: "/home/about"[0m
@@ -208,13 +266,18 @@ Failures:
      [31m[0m
      [36m# ./spec/system/header_spec.rb:47:in `block (4 levels) in <main>'[0m
 
-Finished in 3.98 seconds (files took 1.33 seconds to load)
-[31m95 examples, 4 failures[0m
+Finished in 3.85 seconds (files took 1.31 seconds to load)
+[31m95 examples, 9 failures[0m
 
 Failed examples:
 
-[31mrspec ./spec/system/books_spec.rb:50[0m [36m# 投稿のテスト 編集のテスト 他人の投稿の編集画面への遷移 遷移できない[0m
-[31mrspec ./spec/system/books_spec.rb:100[0m [36m# 投稿のテスト 一覧画面のテスト 表示の確認 自分と他人の画像のリンク先が正しい[0m
-[31mrspec ./spec/system/books_spec.rb:121[0m [36m# 投稿のテスト 詳細画面のテスト 自分・他人共通の投稿詳細画面の表示を確認 ユーザー画像・名前のリンク先が正しい[0m
+[31mrspec ./spec/system/books_spec.rb:44[0m [36m# 投稿のテスト 編集のテスト 自分の投稿の編集画面への遷移 遷移できる[0m
+[31mrspec ./spec/system/books_spec.rb:59[0m [36m# 投稿のテスト 編集のテスト 表示の確認 Editing Bookと表示される[0m
+[31mrspec ./spec/system/books_spec.rb:62[0m [36m# 投稿のテスト 編集のテスト 表示の確認 title編集フォームが表示される[0m
+[31mrspec ./spec/system/books_spec.rb:65[0m [36m# 投稿のテスト 編集のテスト 表示の確認 opinion編集フォームが表示される[0m
+[31mrspec ./spec/system/books_spec.rb:68[0m [36m# 投稿のテスト 編集のテスト 表示の確認 Showリンクが表示される[0m
+[31mrspec ./spec/system/books_spec.rb:71[0m [36m# 投稿のテスト 編集のテスト 表示の確認 Backリンクが表示される[0m
+[31mrspec ./spec/system/books_spec.rb:76[0m [36m# 投稿のテスト 編集のテスト フォームの確認 編集に成功する[0m
+[31mrspec ./spec/system/books_spec.rb:82[0m [36m# 投稿のテスト 編集のテスト フォームの確認 編集に失敗する[0m
 [31mrspec ./spec/system/header_spec.rb:43[0m [36m# ヘッダーのテスト ログインしていない場合 ヘッダーのリンクを確認 About画面に遷移する[0m
 
